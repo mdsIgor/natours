@@ -10,7 +10,13 @@
     opacity: 0;
     visibility: hidden;
     transition: all .3s;
+  
 
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
 
    
 
@@ -19,25 +25,46 @@
         @include absCenter;
         width: 75%;
         box-shadow: 0 2rem 4rem rgba($color-black, .2);
-        background-color: $color-white;
         border-radius: 3px;
-        display: table;
+        //display: table;
         overflow: hidden;
         opacity: 0;
         transform: translate(-50%, -50%) scale(.25);
         transition: all .5s .2s;
+        display: flex;
+
+        @include respond(big-desktop){
+            width: auto;
+        }
     }
 
     &__left {
         width: 33.33333%;
-        display: table-cell;
+        //display: table-cell;
+
+        &-pic{
+            height: 50%;
+            background-size: cover;
+            background-position: center;
+
+            &--p1{
+                background-image: url(../img/nat-8.jpg);
+            }
+            
+            &--p2{
+                background-image: url(../img/nat-9.jpg);
+            }
+        }
     }
+
+    
     
     &__right {
         width: 66.66667%;
        display: table-cell;
        vertical-align: middle;
        padding: 3rem 5rem;
+       background-color: $color-white;
     }
 
     
@@ -63,6 +90,16 @@
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
         hyphens: auto;
+
+        @include respond(phone){
+            -moz-column-count: 1;
+            -moz-column-gap: 0;
+            -moz-column-rule: 0;
+    
+            column-count: 1;
+            column-gap: 0;
+            column-rule: 0;
+        }
     }
 
 
@@ -95,5 +132,35 @@
             color: $color-primary;
         }
     }
+
+    @include respond(tab-land){
+
+        &__content {
+            display: flex;
+            flex-wrap: wrap-reverse;
+        }
+
+        &__right{
+            width: 100%;
+        }
+
+        &__left{
+            display: none;
+            visibility: hidden;
+        }
+      
+
+    }
+
+    @include respond(phone){
+        &__btn {
+            position: relative;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+    }
+
+   
 
 }

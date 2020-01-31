@@ -60,11 +60,19 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     display: inline-block;
-    background-image: linear-gradient(to right, $color-primary-light,$color-primary-dark);
-    -webkit-background-clip: text;
-    color: transparent;
+    //background-image: linear-gradient(to right, $color-primary-light,$color-primary-dark);
+    //-webkit-background-clip: text;
+    //color: transparent;
+    color: $color-primary-dark;
     letter-spacing: .2rem;
     transition: all .2s;
+
+    @supports ( -webkit-background-clip: text) {
+        background-image: linear-gradient(to right, $color-primary-light,$color-primary-dark);
+        -webkit-background-clip: text;
+        color: transparent;
+            
+    }
 
     @include respond(tab-port){ 
         font-size: 3rem;
